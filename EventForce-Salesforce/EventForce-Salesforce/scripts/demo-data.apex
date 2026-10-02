@@ -1,0 +1,11 @@
+Client__c c = new Client__c(Name='Anu Events Client', Email__c='client@example.com', Phone__c='9000000000', City__c='Chennai');
+insert c;
+Venue__c v = new Venue__c(Name='Grand Chennai Hall', Address__c='Chennai', Capacity__c=500, Availability_Status__c='Available');
+insert v;
+Vendor__c vd = new Vendor__c(Name='Event Decor Pro', Email__c='vendor@example.com', Status__c='Available', Service_Type__c='Decor;Lighting');
+insert vd;
+Event__c e = new Event__c(Name='Corporate Annual Meet', Client__c=c.Id, Venue__c=v.Id, Event_Date__c=Date.today().addDays(10), Event_Type__c='Corporate', Event_Status__c='Confirmed');
+insert e;
+insert new EventVendor__c(Event__c=e.Id, Vendor__c=vd.Id);
+insert new Feedback__c(Event__c=e.Id, Client__c=c.Id, Rating__c='5', Comments__c='Very good event experience');
+System.debug('EventForce demo event: ' + e.Id);
